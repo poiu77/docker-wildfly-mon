@@ -19,12 +19,14 @@ RUN cd $HOME \
     && mv $HOME/wildfly-$WILDFLY_VERSION $JBOSS_HOME \
     && rm wildfly-$WILDFLY_VERSION.tar.gz \
     && cd /tmp \
-	&& cp -R wildfly_conf/* $JBOSS_HOME/ \
-	&& rm -rf wildfly_conf \
-	&& chown -R jboss:jboss $JBOSS_HOME \
-	&& chmod +x $JBOSS_HOME/bin/standalone.sh
+    && cp -R wildfly_conf/* $JBOSS_HOME/ \ 
+    && rm -rf wildfly_conf \
+    && chown -R jboss:jboss $JBOSS_HOME \
+    && chgrp -R 0 $JBOSS_HOME \
+    && chmod -R g+rw $JBOSS_HOME \
+    && chmod +x $JBOSS_HOME/bin/standalone.sh
 	
-#USER jboss
+USER jboss
 
 # Ensure signals are forwarded to the JVM process correctly for graceful shutdown
 ENV LAUNCH_JBOSS_IN_BACKGROUND true
