@@ -24,7 +24,7 @@ RUN cd $HOME \
 	&& chown -R jboss:jboss $JBOSS_HOME \
 	&& chmod +x $JBOSS_HOME/bin/standalone.sh
 	
-USER jboss
+#USER jboss
 
 # Ensure signals are forwarded to the JVM process correctly for graceful shutdown
 ENV LAUNCH_JBOSS_IN_BACKGROUND true
