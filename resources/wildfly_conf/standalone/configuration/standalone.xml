@@ -144,8 +144,22 @@
                         <password>sa</password>
                     </security>
                 </datasource>
-				<datasource jndi-name="java:jboss/datasources/monumentsDS" pool-name="monumentsDS" enabled="true" use-java-context="true">
+		<datasource jndi-name="java:jboss/datasources/monumentsDS" pool-name="monumentsDS" enabled="true" use-java-context="true">
                     <connection-url>jdbc:mysql://${env.MYSQL_SERVICE_HOST}:${env.MYSQL_SERVICE_PORT}/monuments?autoReconnect=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8</connection-url>
+                    <driver>mysql</driver>
+                    <security>
+                        <user-name>admin</user-name>
+                        <password>admin</password>
+                    </security>
+					<validation>
+					  <check-valid-connection-sql>select 1</check-valid-connection-sql>
+					  <validate-on-match>false</validate-on-match>
+					  <background-validation>true</background-validation>
+					  <background-validation-millis>10000</background-validation-millis>
+					</validation>
+                </datasource>
+		<datasource jndi-name="java:jboss/datasources/oldMonumentsDS" pool-name="oldMonumentsDS" enabled="true" use-java-context="true">
+                    <connection-url>jdbc:mysql://${env.MYSQL_SERVICE_HOST}:${env.MYSQL_SERVICE_PORT}/old_monuments?autoReconnect=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8</connection-url>
                     <driver>mysql</driver>
                     <security>
                         <user-name>admin</user-name>
