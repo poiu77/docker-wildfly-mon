@@ -172,6 +172,20 @@
 					  <background-validation-millis>10000</background-validation-millis>
 					</validation>
                 </datasource>
+		<datasource jndi-name="java:jboss/datasources/memorialPlacesDS" pool-name="memorialPlacesDS" enabled="true" use-java-context="true" use-ccm="true">
+                    <connection-url>jdbc:mysql://${env.MYSQL_SERVICE_HOST}:${env.MYSQL_SERVICE_PORT}/places?autoReconnect=true&amp;useUnicode=yes&amp;characterEncoding=UTF-8</connection-url>
+                    <driver>mysql</driver>
+                    <security>
+                        <user-name>admin</user-name>
+                        <password>admin</password>
+                    </security>
+					<validation>
+					  <check-valid-connection-sql>select 1</check-valid-connection-sql>
+					  <validate-on-match>false</validate-on-match>
+					  <background-validation>true</background-validation>
+					  <background-validation-millis>10000</background-validation-millis>
+					</validation>
+                </datasource> 
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
